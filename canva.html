@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas绘图示例</title>
+</head>
+<body>
+	<h1>canvas绘图示例</h1>
+	<canvas height='1000' width='1000' ;  id='canvas'>
+		您使用的浏览器不是吃canvas 标签
+	</canvas>
+<script>
+	var canvas =document.getElementById('canvas');
+	var context=canvas.getContext('2d');
+	//alert(context);
+//画一条线段
+	context.beginPath();//开始路径
+	//设置线条粗细
+	context.lineWidth=5;
+	//设置画笔颜色
+	context.strokeStyle='#00FF00';
+
+	context.moveTo(20,60);//设置笔触的位置
+	context.lineTo(100,60);//设置移动的方式
+	context.stroke();
+	context.closePath();//封闭路径
+
+//画一个圆
+	context.beginPath();
+	context.lineWidth=3;
+	context.strokeStyle='#ff0000';
+	context.arc(200,60,50,0,360,false);
+	context.stroke();
+	context.closePath();
+//画一个实心圆
+	context.beginPath();
+	context.arc(350,60,50,0,360,false)
+	context.fillStyle="#0000FF";
+	context.fill();
+	context.stroke();
+	context.closePath();
+//画一个矩形
+	context.strokeRect(500,10,100,100);
+	context.fillRect(20,160,100,100);
+//用老方法画矩形
+	context.beginPath();
+	context.rect(150,160,100,100);
+	context.stroke();
+	context.closePath();
+//写一段文字
+	context.font='40px 黑体';
+	context.fillText("肖果平爱李帅芳",360,180);
+	context.strokeText("肖果平爱李帅芳",360,240);
+//将一张图片 画入 画布中  但是此方法不适合在基于webkit内核的浏览器上使用
+	//var img=new Image();
+	//img.src="xiaomeng.jpg";
+	//context.drawImage(img,20,300,500,400);
+
+//循环画一些复杂的图
+	for(var i=0;i<10;i++){
+		context.beginPath();
+		context.arc(i*30,300+i*30,i*10,0,360,false);
+		context.fillStyle='rgba(255,0,0,0.35)';
+		context.fill();
+		context.closePath();
+	}
+	//如果不封闭路径
+	context.beginPath();
+	for(var i=0;i<10;i++){
+		context.arc(300+i*30,300+i*30,i*10,0,360,false);
+		context.fillStyle='rgba(0,255,0,0.25)';
+		context.fill();
+	}
+	context.closePath();
+
+</script>
+	
+</body>
+</html>
