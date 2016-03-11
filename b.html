@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta name="name" content="content" charset="utf-8">
+</head>
+<body>
+<iframe id="iframe" src="http://www.test.com/b.html" onload="onload()"></iframe>
+<script type="text/javascript">
+	window.onmessage = function(e){
+		e = e || event;
+		alert(e.data);
+	}
+</script>
+</body>
+</html>
