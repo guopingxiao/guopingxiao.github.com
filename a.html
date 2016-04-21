@@ -4,13 +4,21 @@
 	<meta name="name" content="content" charset="utf-8">
 </head>
 <body>
-<iframe id="iframe" src="http://guopingxiao.github.io/b.html" onload="onload()"></iframe>
 <script type="text/javascript">
-	function onload(){
-		var iframe = document.getElementById("iframe");
-		var win = iframe.contentWindow;
-		win.postMessage("哈哈哈，我是来时页面a的消息！！");
-	}
+	document.domain='a.com';
+	var ifr = document.createElement('iframe');
+	ifr.src = 'http://a.com/b.html';
+	ifr.style.display = 'none';
+	document.body.appendChild(ifr);
+	ifr.onload = function(){
+	  //获取iframe的document对象
+	  //W3C的标准方法是iframe.contentDocument，
+	  //IE6、7可以使用document.frames[ID].document
+	  //为了更好兼容，可先获取iframe的window对象iframe.contentWindow
+	  var doc = ifr.contentDocument || ifr.contentWindow.document;
+	  // 在这里操纵b.html
+	  alert(doc.getElementById("test").innerHTML);
+   };
 </script>
 </body>
 </html>
